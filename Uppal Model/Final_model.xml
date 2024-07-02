@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan W,R, G, F, e, F2, WB, B,I;
+chan C,CR,CG,CF,CF2,Ce,CB;</declaration>
+	<template>
+		<name>StartingPoint</name>
+		<parameter>chan &amp;W,chan &amp;C, chan &amp;WB, chan &amp;CB</parameter>
+		<location id="id0" x="-306" y="-144">
+			<name x="-316" y="-178">Data</name>
+			<urgent/>
+		</location>
+		<location id="id1" x="-238" y="-144">
+			<name x="-248" y="-178">Image_Process</name>
+			<urgent/>
+		</location>
+		<location id="id2" x="-195" y="-187">
+			<name x="-205" y="-221">unhealthy_weed_detected</name>
+		</location>
+		<location id="id3" x="-187" y="-102">
+			<name x="-297" y="-93">unhealthy_plant_detected</name>
+		</location>
+		<location id="id4" x="-127" y="-187">
+			<name x="-119" y="-187">Weeder_mode</name>
+		</location>
+		<location id="id5" x="-119" y="-102">
+			<name x="-129" y="-136">crop_protection_mode</name>
+		</location>
+		<init ref="id0"/>
+		<transition id="id6">
+			<source ref="id5"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-194" y="-42">CB?</label>
+			<nail x="-119" y="-25"/>
+			<nail x="-212" y="-25"/>
+		</transition>
+		<transition id="id7">
+			<source ref="id4"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-194" y="-272">WB?</label>
+			<nail x="-127" y="-255"/>
+			<nail x="-212" y="-255"/>
+		</transition>
+		<transition id="id8">
+			<source ref="id3"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-169" y="-119">C!</label>
+		</transition>
+		<transition id="id9">
+			<source ref="id1"/>
+			<target ref="id3"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-177" y="-204">W!</label>
+		</transition>
+		<transition id="id11">
+			<source ref="id1"/>
+			<target ref="id2"/>
+		</transition>
+		<transition id="id12">
+			<source ref="id0"/>
+			<target ref="id1"/>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">Weeder_s1</name>
+		<parameter>chan &amp;R, chan &amp;W</parameter>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id13" x="-263" y="-187">
+			<name x="-273" y="-221">start</name>
+		</location>
+		<location id="id14" x="-195" y="-127">
+			<name x="-205" y="-161">Process</name>
+		</location>
+		<location id="id15" x="-289" y="-110">
+			<name x="-314" y="-102">generate</name>
+		</location>
+		<init ref="id13"/>
+		<transition id="id16">
+			<source ref="id15"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-297" y="-161">R!</label>
+		</transition>
+		<transition id="id17">
+			<source ref="id14"/>
+			<target ref="id15"/>
+		</transition>
+		<transition id="id18">
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-238" y="-178">W?</label>
+		</transition>
+	</template>
+	<template>
+		<name>Weeder_s2</name>
+		<parameter>chan &amp;R, chan &amp;G, chan &amp;F</parameter>
+		<location id="id19" x="-280" y="-195">
+			<name x="-290" y="-229">get_ready</name>
+		</location>
+		<location id="id20" x="-195" y="-153">
+			<name x="-205" y="-187">ready</name>
+		</location>
+		<location id="id21" x="-272" y="-93">
+			<name x="-297" y="-85">taken</name>
+		</location>
+		<init ref="id19"/>
+		<transition id="id22">
+			<source ref="id21"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-323" y="-161">F?</label>
+			<nail x="-306" y="-136"/>
+		</transition>
+		<transition id="id23">
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-212" y="-102">G?</label>
+			<nail x="-204" y="-102"/>
+		</transition>
+		<transition id="id24">
+			<source ref="id19"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-221" y="-204">R?</label>
+			<nail x="-221" y="-195"/>
+		</transition>
+	</template>
+	<template>
+		<name>Weeder_s3</name>
+		<parameter>chan &amp;F, chan &amp;G, chan &amp;e, chan &amp;F2</parameter>
+		<location id="id25" x="-102" y="-136">
+			<name x="-112" y="-170">wait</name>
+		</location>
+		<location id="id26" x="-51" y="-93">
+			<name x="-61" y="-127">get_position</name>
+		</location>
+		<location id="id27" x="-76" y="-34">
+			<name x="-102" y="-25">BUFFER</name>
+		</location>
+		<location id="id28" x="-153" y="-34">
+			<committed/>
+		</location>
+		<location id="id29" x="-161" y="-93">
+			<urgent/>
+		</location>
+		<init ref="id25"/>
+		<transition id="id30">
+			<source ref="id29"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-144" y="-119">WB!</label>
+		</transition>
+		<transition id="id31">
+			<source ref="id28"/>
+			<target ref="id29"/>
+			<label kind="synchronisation" x="-178" y="-68">F!</label>
+		</transition>
+		<transition id="id32">
+			<source ref="id27"/>
+			<target ref="id28"/>
+			<label kind="synchronisation" x="-127" y="-34">F2?</label>
+		</transition>
+		<transition id="id33">
+			<source ref="id26"/>
+			<target ref="id27"/>
+			<label kind="synchronisation" x="-59" y="-68">e?</label>
+		</transition>
+		<transition id="id34">
+			<source ref="id25"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-68" y="-119">G!</label>
+		</transition>
+	</template>
+	<template>
+		<name>Weeder_s4</name>
+		<parameter>chan &amp;I,chan &amp;F2,chan &amp;e,chan &amp;B</parameter>
+		<location id="id35" x="-161" y="-76">
+			<name x="-171" y="-110">wait</name>
+		</location>
+		<location id="id36" x="-76" y="-42">
+			<committed/>
+		</location>
+		<location id="id37" x="-144" y="51">
+			<name x="-178" y="68">eliminate</name>
+		</location>
+		<location id="id38" x="-221" y="-8">
+			<committed/>
+		</location>
+		<init ref="id35"/>
+		<transition id="id39">
+			<source ref="id38"/>
+			<target ref="id35"/>
+			<label kind="synchronisation" x="-221" y="-51">F2!</label>
+		</transition>
+		<transition id="id40">
+			<source ref="id37"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-204" y="17">I!</label>
+		</transition>
+		<transition id="id41">
+			<source ref="id36"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-85" y="17">B!</label>
+			<nail x="-85" y="17"/>
+		</transition>
+		<transition id="id42">
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="synchronisation" x="-127" y="-76">e!</label>
+		</transition>
+	</template>
+	<template>
+		<name>idle_busy</name>
+		<parameter>chan &amp;B, chan &amp;I</parameter>
+		<location id="id43" x="-221" y="-59">
+			<name x="-231" y="-93">idle</name>
+		</location>
+		<location id="id44" x="-68" y="0">
+			<name x="-78" y="-34">busy</name>
+		</location>
+		<init ref="id43"/>
+		<transition id="id45">
+			<source ref="id44"/>
+			<target ref="id43"/>
+			<label kind="synchronisation" x="-178" y="-76">I?</label>
+			<nail x="-68" y="-59"/>
+		</transition>
+		<transition id="id46">
+			<source ref="id43"/>
+			<target ref="id44"/>
+			<label kind="synchronisation" x="-170" y="0">B?</label>
+			<nail x="-221" y="0"/>
+		</transition>
+	</template>
+	<template>
+		<name>CropP_s1</name>
+		<parameter>chan &amp;CR, chan &amp;C</parameter>
+		<location id="id47" x="34" y="110">
+			<name x="24" y="76">generate</name>
+		</location>
+		<location id="id48" x="67" y="22">
+			<name x="57" y="-12">start</name>
+		</location>
+		<location id="id49" x="127" y="93">
+			<name x="117" y="59">Process</name>
+		</location>
+		<init ref="id48"/>
+		<transition id="id50">
+			<source ref="id47"/>
+			<target ref="id48"/>
+			<label kind="synchronisation" x="17" y="68">CR!</label>
+		</transition>
+		<transition id="id51">
+			<source ref="id49"/>
+			<target ref="id47"/>
+		</transition>
+		<transition id="id52">
+			<source ref="id48"/>
+			<target ref="id49"/>
+			<label kind="synchronisation" x="85" y="52">C?</label>
+		</transition>
+	</template>
+	<template>
+		<name>CropP_s2</name>
+		<parameter>chan &amp;CR, chan &amp;CG, chan &amp;CF</parameter>
+		<location id="id53" x="93" y="110">
+			<name x="83" y="76">taken</name>
+		</location>
+		<location id="id54" x="93" y="8">
+			<name x="83" y="-26">get_ready</name>
+		</location>
+		<location id="id55" x="187" y="76">
+			<name x="177" y="42">ready</name>
+		</location>
+		<init ref="id54"/>
+		<transition id="id56">
+			<source ref="id53"/>
+			<target ref="id54"/>
+			<label kind="synchronisation" x="42" y="85">CF?</label>
+			<nail x="42" y="68"/>
+		</transition>
+		<transition id="id57">
+			<source ref="id55"/>
+			<target ref="id53"/>
+			<label kind="synchronisation" x="169" y="105">CG?</label>
+			<nail x="161" y="119"/>
+		</transition>
+		<transition id="id58">
+			<source ref="id54"/>
+			<target ref="id55"/>
+			<label kind="synchronisation" x="170" y="17">CR?</label>
+			<nail x="162" y="22"/>
+		</transition>
+	</template>
+	<template>
+		<name>CropP_s3</name>
+		<parameter>chan &amp;CF, chan &amp;CG, chan &amp;Ce, chan &amp;CF2</parameter>
+		<location id="id59" x="195" y="153">
+			<name x="185" y="119">BUFFER</name>
+		</location>
+		<location id="id60" x="76" y="110">
+			<committed/>
+		</location>
+		<location id="id61" x="255" y="68">
+			<name x="245" y="34">get_position</name>
+		</location>
+		<location id="id62" x="170" y="0">
+			<name x="160" y="-34">wait</name>
+		</location>
+		<location id="id63" x="76" y="42">
+			<urgent/>
+		</location>
+		<init ref="id62"/>
+		<transition id="id64">
+			<source ref="id60"/>
+			<target ref="id63"/>
+			<label kind="synchronisation" x="50" y="65">CF!</label>
+		</transition>
+		<transition id="id65">
+			<source ref="id63"/>
+			<target ref="id62"/>
+			<label kind="synchronisation" x="94" y="15">CB!</label>
+		</transition>
+		<transition id="id66">
+			<source ref="id59"/>
+			<target ref="id60"/>
+			<label kind="synchronisation" x="102" y="127">CF2?</label>
+		</transition>
+		<transition id="id67">
+			<source ref="id61"/>
+			<target ref="id59"/>
+			<label kind="synchronisation" x="238" y="110">Ce?</label>
+		</transition>
+		<transition id="id68">
+			<source ref="id62"/>
+			<target ref="id61"/>
+			<label kind="synchronisation" x="187" y="43">CG!</label>
+		</transition>
+	</template>
+	<template>
+		<name>CropP_s4</name>
+		<parameter>chan &amp;CF2, chan &amp;Ce, chan &amp;B,chan &amp;I</parameter>
+		<location id="id69" x="68" y="76">
+			<committed/>
+		</location>
+		<location id="id70" x="160" y="22">
+			<name x="150" y="-12">wait</name>
+		</location>
+		<location id="id71" x="161" y="153">
+			<name x="136" y="119">spray</name>
+		</location>
+		<location id="id72" x="263" y="76">
+			<committed/>
+		</location>
+		<init ref="id70"/>
+		<transition id="id73">
+			<source ref="id69"/>
+			<target ref="id70"/>
+			<label kind="synchronisation" x="76" y="34">CF2!</label>
+		</transition>
+		<transition id="id74">
+			<source ref="id71"/>
+			<target ref="id69"/>
+			<label kind="synchronisation" x="85" y="110">I!</label>
+		</transition>
+		<transition id="id75">
+			<source ref="id72"/>
+			<target ref="id71"/>
+			<label kind="synchronisation" x="255" y="136">B!</label>
+			<nail x="246" y="136"/>
+		</transition>
+		<transition id="id76">
+			<source ref="id70"/>
+			<target ref="id72"/>
+			<label kind="synchronisation" x="195" y="25">Ce!</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+//Weeder
+Plant_Observer = StartingPoint(W,C,WB,CB);//WB,CB);
+Observe_weed = Weeder_s1(R,W);
+Weed_location_access_coordination = Weeder_s2(R,G,F);
+Weed_location_receiver = Weeder_s3(F,G,e,F2);
+Eliminate = Weeder_s4(I,F2,e,B);
+
+actuation_coordination = idle_busy(B,I);
+
+//Crop Protection
+
+Observe_crop = CropP_s1(CR,C);
+Unhealthy_crop_location_access_coordination = CropP_s2(CR,CG,CF);
+Unhealthy_crop_receiver = CropP_s3(CF,CG,Ce,CF2); 
+Spray = CropP_s4(CF2,Ce,B,I);
+
+
+//Process = Template();
+// List one or more processes to be composed into a system.
+system Plant_Observer, Observe_weed, Weed_location_access_coordination, Weed_location_receiver, Eliminate, actuation_coordination,Observe_crop, Unhealthy_crop_location_access_coordination, Unhealthy_crop_receiver, Spray;//Process;
+</system>
+	<queries>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-09 19:09:32 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>A&lt;&gt; Plant_Observer.Data</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:30:49 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>A[] !(Plant_Observer.Weeder_mode &amp;&amp; Plant_Observer.crop_protection_mode)</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:32:31 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-09 20:02:45 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>Plant_Observer.crop_protection_mode --&gt; Weed_location_receiver.wait</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:25:21 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>A[] !(Plant_Observer.Weeder_mode &amp;&amp; Plant_Observer.crop_protection_mode)</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:24:45 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>A[] Plant_Observer.Data || Plant_Observer.Image_Process || Plant_Observer.unhealthy_weed_detected || Plant_Observer.unhealthy_plant_detected || Plant_Observer.Weeder_mode || Plant_Observer.crop_protection_mode
+</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:21 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Weed_location_receiver.get_position</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:24:39 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Weed_location_receiver.wait</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:24:41 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.crop_protection_mode</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:40 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.Weeder_mode</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:42 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.unhealthy_plant_detected</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:43 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.unhealthy_weed_detected</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:46 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.Image_Process</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:48 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.Data</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:15:50 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Weed_location_receiver.get_position</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:07:49 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Plant_Observer.Weeder_mode &amp;&amp; Weed_location_receiver.wait)</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:09:12 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Observe_crop.Process</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:10:32 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>Plant_Observer.Data --&gt; Plant_Observer.Image_Process</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:12:27 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Weed_location_receiver.BUFFER</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:12:54 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>A[] not (Plant_Observer.Weeder_mode &amp;&amp; Plant_Observer.crop_protection_mode)</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:13:28 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Observe_weed.Process</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:13:50 +0200">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Plant_Observer.Image_Process</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-06-11 13:14:17 +0200">
+			</result>
+		</query>
+	</queries>
+</nta>
