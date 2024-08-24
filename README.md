@@ -7,6 +7,11 @@ Agriculture is the backbone of human sustenance, playing a crucial role in feedi
 
 To address these challenges, we introduce our **Smart Agricultural Robot**—an innovative solution designed to autonomously navigate through agricultural fields, identify and remove weeds, and spray unhealthy crops. This robot aims to reduce the labor-intensive aspects of crop management, ensuring healthier crops and potentially increasing overall productivity.
 
+
+<p align="center">
+  <img src="images/out1.gif" alt="Demo of the Smart Agricultural Robot"/>
+</p>
+
 ## Project Scope
 
 This project focuses on the partial design and implementation of a smart agricultural robot. The key features developed in this phase include:
@@ -42,11 +47,6 @@ Machine learning plays a pivotal role in the robot's operation, particularly in 
 ## Demo
 
 To see our Smart Agricultural Robot in action, check out the demo below:
-
-
-<p align="center">
-  <img src="images/out1.gif" alt="Demo of the Smart Agricultural Robot"/>
-</p>
 
 This GIF showcases the robot autonomously navigating a field, detecting and removing weeds, and spraying crops as needed. It provides a glimpse into the potential of this technology to revolutionize crop management.
 
