@@ -1,5 +1,4 @@
-# Smart Agricultural Robot
-
+# Smart Agricultural Robot 🚓 🤖 🚓
 ![Demo of the Smart Agricultural Robot](images/demo.gif)
 
 ## Overview
@@ -44,7 +43,10 @@ Machine learning plays a pivotal role in the robot's operation, particularly in 
 
 To see our Smart Agricultural Robot in action, check out the demo below:
 
-![Demo of the Smart Agricultural Robot](images/out1.gif)
+
+<p align="center">
+  <img src="images/out1.gif" alt="Demo of the Smart Agricultural Robot"/>
+</p>
 
 This GIF showcases the robot autonomously navigating a field, detecting and removing weeds, and spraying crops as needed. It provides a glimpse into the potential of this technology to revolutionize crop management.
 
